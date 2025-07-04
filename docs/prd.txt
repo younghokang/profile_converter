@@ -1,0 +1,50 @@
+<context>
+# Overview  
+이 프로그램은 사용자가 업로드한 이력서 Word(.docx) 파일을 파싱하여, 표준화된 JSON 포맷으로 변환하는 Python 기반의 도구이다. 이력서의 다양한 양식을 일관된 데이터 구조로 변환함으로써, 인사담당자나 자동화 시스템이 손쉽게 이력서 정보를 활용할 수 있도록 한다.
+
+# Core Features  
+- Word(.docx) 파일 파싱: 다양한 이력서 양식의 Word 파일을 읽어들여 텍스트 및 표 정보를 추출한다.
+- 표준 JSON 변환: 추출된 정보를 사전에 정의된 표준 JSON 포맷(예: 이름, 연락처, 학력, 경력, 기술 등)으로 변환한다.
+- 예외 처리 및 유연성: 다양한 이력서 레이아웃을 최대한 유연하게 처리하며, 누락된 정보에 대한 예외 처리를 제공한다.
+- CLI/간단한 UI: 사용자가 파일을 업로드하고 결과를 받을 수 있는 명령행 인터페이스 또는 간단한 웹 UI 제공(선택적).
+- 한글 이력서 자동 인식 고도화: 한글 이력서의 다양한 양식과 레이아웃을 자동으로 인식하기 위해, 정규표현식/키워드 기반 섹션 구분, 한글 자연어처리(NLP) 라이브러리(KoNLPy, KoSpaCy 등) 활용, Donut/LayoutLM 등 문서 인식 모델 적용을 지원한다.
+
+# User Experience  
+- 사용자 페르소나: 인사담당자, 구직자, 자동화 시스템 관리자
+- 주요 사용자 흐름: 사용자는 Word 이력서 파일을 업로드 → 프로그램이 파싱 및 변환 → 표준 JSON 결과를 다운로드/확인
+- UI/UX 고려사항: 직관적인 입력/출력, 오류 발생 시 명확한 안내 메시지
+</context>
+<PRD>
+# Technical Architecture  
+- System components: Word 파일 파서 모듈, JSON 변환기, CLI/웹 UI(선택)
+- Data models: 표준 이력서 JSON 스키마(예: name, contact, education, experience, skills 등)
+- APIs and integrations: python-docx 등 Word 파싱 라이브러리 활용, (웹 UI의 경우 Flask 등 경량 웹 프레임워크)
+- Infrastructure requirements: Python 3.x 환경, 필요시 웹 서버
+- 한글 이력서 자동 인식: KoNLPy, KoSpaCy 등 한글 NLP 라이브러리, HuggingFace Donut/LayoutLM 등 문서 인식 모델 연동
+
+# Development Roadmap  
+- MVP requirements:
+  - Word(.docx) 파일에서 텍스트/표 추출
+  - 표준 JSON 포맷 정의 및 매핑
+  - CLI로 파일 입력/출력 지원
+  - 한글 이력서 섹션 구분 Rule 설계 및 테스트
+- Future enhancements:
+  - 다양한 이력서 레이아웃 자동 인식 및 매핑 고도화
+  - 간단한 웹 UI 제공
+  - PDF 등 추가 포맷 지원
+  - 한글 NLP 및 문서 인식 모델(예: Donut, LayoutLM) 적용
+
+# Logical Dependency Chain
+- Word 파일 파싱 기능 → 표준 JSON 매핑 → CLI 입출력 → (선택) 웹 UI
+
+# Risks and Mitigations  
+- 다양한 이력서 양식 대응의 어려움 → 예외처리 및 유연한 매핑 로직 설계
+- 표준 JSON 스키마 정의의 모호성 → 실제 이력서 샘플 기반 반복 개선
+- 한글 이력서 자동 인식 정확도 한계 → 규칙 기반 + NLP + 문서 인식 모델을 조합, 다양한 샘플로 반복 개선
+
+# Appendix  
+- python-docx 라이브러리 활용법
+- 표준 이력서 JSON 예시
+- KoNLPy, KoSpaCy 등 한글 NLP 라이브러리 적용 예시
+- Donut, LayoutLM 등 문서 인식 모델 적용 예시
+</PRD> 
